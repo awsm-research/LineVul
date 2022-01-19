@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="logo/linevul_logo.png" width="200" height="200">
+    <img src="logo/todo" width="200" height="200">
   </a>
   <h3 align="center">LineVul</h3>
   <p align="center">
@@ -20,8 +20,6 @@
           <li><a href="#about-the-datasets">About the Datasets</a></li>
           <li><a href="#about-the-models">About the Models</a></li>
           <li><a href="#about-the-experiment-replication">About the Experiment Replication</a></li>
-          <li><a href="#about-the-evaluation-results">About the Evaluation Results</a></li>
-          <li><a href="#about-the-gpt2sp-web-app">About the GPT2SP Web App</a></li>
         </ul>
     </li>
     <li>
@@ -36,7 +34,7 @@
 ## How to replicate 
 
 ### About the Datasets
-All of the dataset has the same number of columns (i.e., 39 cols), we focus on the following N columns to conduct our experiments </a>
+All of the dataset has the same number of columns (i.e., 39 cols), we focus on the following 3 columns to conduct our experiments:
 1. processed_func (str): The original function written in C/C++
 2. target (int): The function-level label that determines whether a function is vulnerable or not
 3. vul_func_with_fix (str): The fixed function with added in deleted lines labeled
@@ -52,33 +50,43 @@ For more information of our dataset, please refer to <a href="https://dl.acm.org
 #### Model Naming Convention
 All of the models on HuggingFace Model Hub and Google Drive has the same naming convention as described in the following table:
 
-Model Name | Model Specification | HuggingFace ID
+Model Name | Model Specification | HuggingFace Model ID
 | :---: | :---: | :---: 
 LineVul  | BPE + Pre-training (Codesearchnet) + BERT | MickyMike/LineVul
 XX  | BPE GPT2 Tokenizer + Custom Pre-trained GPT-2 (GPT2SP) | MickyMike/
 XXX  | BPE GPT2 Tokenizer + Custom Pre-trained GPT-2 (GPT2SP) | MickyMike/
  
 #### How to access the models
-* Three different pre-trained tokenizers can be found in the all_tokenizers folder: <a href="https://github.com/awsm-research/gpt2sp/tree/main/all_tokenizers/word_level">Word-levelSP Tokenizer<a/>, <a href="https://github.com/awsm-research/gpt2sp/tree/main/all_tokenizers/word_piece"> WordPieceSP Tokenizer <a/>, and <a href="https://github.com/awsm-research/gpt2sp/tree/main/all_tokenizers/sentence_piece"> SentencePieceSP Tokenizer<a/>
 * All of the models included in our experiments can be found on the <a href="https://huggingface.co/MickyMike"> Model Hub </a> provided by HuggingFace
-* For your information, the models can also be downloaded from this <a href="https://drive.google.com/drive/folders/1oQgj6wDxNa8oF9RHXQsQQr4g_aAbxdif?usp=sharing"> Google Drive <a/>
+* For your information, the models can also be downloaded from this <a href="todo"> Google Drive <a/>
 
 ### About the Experiment Replication
-    
+  We provide <a href="todo">a csv file</a> that contains all of the raw function-level predictions by LineVul.
+
 #### How to replicate RQ1
+  To reproduce the RQ1 result, run the following commands (Inference only):
+  
+  To retrain the RQ1 model, run the following commands (Training + Inference):
 
 #### How to replicate RQ2
-
+  To reproduce the RQ2 result of Top-10 Accuracy, run the following commands:
+    
+  To reproduce the RQ2 result of IFA Accuracy, run the following commands:
+    
 #### How to replicate RQ3
+  To reproduce the RQ3 result of Effort@20%Recall, run the following commands:
+    
+  To reproduce the RQ3 result of Recall@1%LOC, run the following commands:
 
-  
-### About the Evaluation Results
-* All of the raw predictions from different experiments can be found in the <a href="https://github.com/awsm-research/gpt2sp/tree/main/sp_dataset/testing_results">testing_results folder</a> where we classify the folders based on the experimental scenarios (i.e., within-project and cross-project)and each experimental scenario has four different models as follows:
-  * GPT2SP
-  * SentencePieceSP+GPT2
-  * Word-levelSP+GPT2
-  * WordPieceSP+GPT2
-  
+#### How to replicate the ablation study in the discussion section
+  To reproduce the result of XX model in the ablation study, run the following commands:
+    
+  To reproduce the result of XX model in the ablation study, run the following commands:
+    
+  To reproduce the result of XX model in the ablation study, run the following commands:
+    
+  To reproduce the result of XX model in the ablation study, run the following commands:
+    
 ## Acknowledgements
 * Special thanks to CodeBERT's developers
 * Special thanks to BigVulDataset Provider
