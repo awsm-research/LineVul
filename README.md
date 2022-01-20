@@ -52,9 +52,10 @@ All of the models on HuggingFace Model Hub and Google Drive has the same naming 
 
 Model Name | Model Specification | HuggingFace Model ID
 | :---: | :---: | :---: 
-LineVul  | BPE + Pre-training (Codesearchnet) + BERT | MickyMike/LineVul
-XX  | BPE GPT2 Tokenizer + Custom Pre-trained GPT-2 (GPT2SP) | MickyMike/
-XXX  | BPE GPT2 Tokenizer + Custom Pre-trained GPT-2 (GPT2SP) | MickyMike/
+LineVul  | BPE Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/LineVul
+BPEBERT  | BPE Tokenizer + No Pre-training + BERT | MickyMike/BPEBERT
+WordlevelPretrainedBERT  | Wordlevel Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/WordlevelPretrainedBERT
+WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/WordlevelBERT
  
 #### How to access the models
 * All of the models included in our experiments can be found on the <a href="https://huggingface.co/MickyMike"> Model Hub </a> provided by HuggingFace
