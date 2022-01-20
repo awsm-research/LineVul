@@ -56,7 +56,8 @@ LineVul  | BPE Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/LineV
 BPEBERT  | BPE Tokenizer + No Pre-training + BERT | MickyMike/BPEBERT
 WordlevelPretrainedBERT  | Wordlevel Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/WordlevelPretrainedBERT
 WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/WordlevelBERT
- 
+BoWRF | Bag of Words + Random Forest | N/A
+
 #### How to access the models
 * All of the models included in our experiments can be found on the <a href="https://huggingface.co/MickyMike"> Model Hub </a> provided by HuggingFace
 * For your information, the models can also be downloaded from this <a href="todo"> Google Drive <a/>
