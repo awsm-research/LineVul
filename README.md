@@ -206,6 +206,12 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     --eval_batch_size 512
   ```
     
+  To reproduce the RQ2 result of Top-10 Accuracy and IFA of CppCheck, run the following commands:
+  ```
+  cd cppcheck
+  python run.py
+  ```
+    
 #### How to replicate RQ3
   Please first download the model "12heads_linevul_model.bin" through the following commands:
   ```
@@ -236,6 +242,12 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     --test_data_file=../data/big-vul_dataset/test.csv \
     --block_size 512 \
     --eval_batch_size 512
+  ```
+
+  To reproduce the RQ3 result of Effort@20%Recall and Recall@1%LOC of CppCheck, run the following commands:
+  ```
+  cd cppcheck
+  python run.py
   ```
 
 #### How to replicate the ablation study in the discussion section
