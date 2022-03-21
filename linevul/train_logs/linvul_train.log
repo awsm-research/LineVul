@@ -1,0 +1,149 @@
+(hf_xfmr) michael@m4:~/HDD18TB/gated_transformer_dev/codebert$ python codebert_main.py     --output_dir=./saved_models     --model_type=roberta     --tokenizer_name=microsoft/codebert-base     --model_name_or_path=microsoft/codebert-base     --do_train     --do_test     --train_data_file=../data/big-vul_dataset/train.csv     --eval_data_file=../data/big-vul_dataset/val.csv     --test_data_file=../data/big-vul_dataset/test.csv     --epochs 10     --block_size 512     --train_batch_size 16     --eval_batch_size 16     --learning_rate 2e-5     --max_grad_norm 1.0     --evaluate_during_training     --seed 123456  2>&1 | tee train.log
+12/09/2021 17:19:47 - WARNING - __main__ -   device: cuda, n_gpu: 1
+Some weights of the model checkpoint at microsoft/codebert-base were not used when initializing RobertaForSequenceClassification: ['pooler.dense.weight', 'pooler.dense.bias']
+- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at microsoft/codebert-base and are newly initialized: ['classifier.dense.weight', 'classifier.out_proj.weight', 'classifier.out_proj.bias', 'classifier.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+12/09/2021 17:19:59 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../data/big-vul_dataset/train.csv', output_dir='./saved_models', model_type='roberta', block_size=512, eval_data_file='../data/big-vul_dataset/val.csv', test_data_file='../data/big-vul_dataset/test.csv', model_name_or_path='microsoft/codebert-base', config_name='', tokenizer_name='microsoft/codebert-base', code_length=256, do_train=True, do_eval=False, do_test=True, evaluate_during_training=True, do_local_explanation=False, train_batch_size=16, eval_batch_size=16, gradient_accumulation_steps=1, learning_rate=2e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, max_steps=-1, warmup_steps=0, seed=123456, epochs=10, n_gpu=1, device=device(type='cuda'))
+100%|██████████| 150908/150908 [01:50<00:00, 1370.35it/s]
+12/09/2021 17:22:23 - INFO - __main__ -   *** Example ***
+12/09/2021 17:22:23 - INFO - __main__ -   label: 0
+12/09/2021 17:22:23 - INFO - __main__ -   input_tokens: ['<s>', 'const', '_char', '_*', 'OB', 'J', '_', 'n', 'id', '2', 'sn', '(', 'int', '_n', ')', 'Ċ', 'ĉ', '{', 'Ċ', 'ĉ', 'ADD', 'ED', '_', 'OB', 'J', '_ad', ',', '*', 'ad', 'p', ';', 'Ċ', 'ĉ', 'AS', 'N', '1', '_', 'OB', 'JECT', '_ob', ';', 'ĊĊ', 'ĉ', 'if', '_((', 'n', '_>=', '_0', ')', '_&&', '_(', 'n', '_<', '_NUM', '_', 'N', 'ID', '))', 'Ċ', 'ĉ', 'ĉ', '{', 'Ċ', 'ĉ', 'ĉ', 'if', '_((', 'n', '_!=', '_N', 'ID', '_', 'und', 'ef', ')', '_&&', '_(', 'n', 'id', '_', 'ob', 'js', '[', 'n', '].', 'n', 'id', '_==', '_N', 'ID', '_', 'und', 'ef', '))', 'Ċ', 'ĉ', 'ĉ', 'ĉ', '{', 'Ċ', 'ĉ', 'ĉ', 'ĉ', 'OB', 'J', 'err', '(', 'OB', 'J', '_', 'F', '_', 'OB', 'J', '_', 'N', 'ID', '2', 'SN', ',', 'OB', 'J', '_', 'R', '_', 'UN', 'KNOWN', '_', 'N', 'ID', ');', 'Ċ', 'ĉ', 'ĉ', 'ĉ', 'return', '(', 'NULL', ');', 'Ċ', 'ĉ', 'ĉ', 'ĉ', '}', 'Ċ', 'ĉ', 'ĉ', 'return', '(', 'n', 'id', '_', 'ob', 'js', '[', 'n', '].', 'sn', ');', 'Ċ', 'ĉ', 'ĉ', '}', 'Ċ', 'ĉ', 'else', '_if', '_(', 'added', '_==', '_NULL', ')', 'Ċ', 'ĉ', 'ĉ', 'return', '(', 'NULL', ');', 'Ċ', 'ĉ', 'else', 'Ċ', 'ĉ', 'ĉ', '{', 'Ċ', 'ĉ', 'ĉ', 'ad', '.', 'type', '=', 'ADD', 'ED', '_', 'N', 'ID', ';', 'Ċ', 'ĉ', 'ĉ', 'ad', '.', 'obj', '=', '_&', 'ob', ';', 'Ċ', 'ĉ', 'ĉ', 'ob', '.', 'n', 'id', '=', 'n', ';', 'Ċ', 'ĉ', 'ĉ', 'ad', 'p', '=', 'l', 'h', '_', 'ADD', 'ED', '_', 'OB', 'J', '_', 'ret', 'rieve', '(', 'added', ',', '&', 'ad', ');', 'Ċ', 'ĉ', 'ĉ', 'if', '_(', 'ad', 'p', '_!=', '_NULL', ')', 'Ċ', 'ĉ', 'ĉ', 'ĉ', 'return', '(', 'ad', 'p', '->', 'obj', '->', 'sn', ');', 'Ċ', 'ĉ', 'ĉ', 'else', 'Ċ', 'ĉ', 'ĉ', 'ĉ', '{', 'Ċ', 'ĉ', 'ĉ', 'ĉ', 'OB', 'J', 'err', '(', 'OB', 'J', '_', 'F', '_', 'OB', 'J', '_', 'N', 'ID', '2', 'SN', ',', 'OB', 'J', '_', 'R', '_', 'UN', 'KNOWN', '_', 'N', 'ID', ');', 'Ċ', 'ĉ', 'ĉ', 'ĉ', 'return', '(', 'NULL', ');', 'Ċ', 'ĉ', 'ĉ', 'ĉ', '}', 'Ċ', 'ĉ', 'ĉ', '}', 'Ċ', 'ĉ', '}', 'Ċ', '</s>']
+12/09/2021 17:22:23 - INFO - __main__ -   input_ids: 0 20836 16224 1009 7912 863 1215 282 808 176 22617 1640 2544 295 43 50118 50117 45152 50118 50117 37705 1691 1215 7912 863 2329 6 3226 625 642 131 50118 50117 2336 487 134 1215 7912 33302 6168 131 50140 50117 1594 41006 282 49095 321 43 48200 36 282 28696 34300 1215 487 2688 35122 50118 50117 50117 45152 50118 50117 50117 1594 41006 282 49333 234 2688 1215 3194 4550 43 48200 36 282 808 1215 2413 21978 10975 282 8174 282 808 45994 234 2688 1215 3194 4550 35122 50118 50117 50117 50117 45152 50118 50117 50117 50117 7912 863 14385 1640 7912 863 1215 597 1215 7912 863 1215 487 2688 176 12436 6 7912 863 1215 500 1215 4154 47300 1215 487 2688 4397 50118 50117 50117 50117 30921 1640 49728 4397 50118 50117 50117 50117 24303 50118 50117 50117 30921 1640 282 808 1215 2413 21978 10975 282 8174 22617 4397 50118 50117 50117 24303 50118 50117 44617 114 36 26551 45994 48955 43 50118 50117 50117 30921 1640 49728 4397 50118 50117 44617 50118 50117 50117 45152 50118 50117 50117 625 4 12528 5214 37705 1691 1215 487 2688 131 50118 50117 50117 625 4 46134 5214 359 2413 131 50118 50117 50117 2413 4 282 808 5214 282 131 50118 50117 50117 625 642 5214 462 298 1215 37705 1691 1215 7912 863 1215 4903 20080 1640 26551 6 947 625 4397 50118 50117 50117 1594 36 625 642 49333 48955 43 50118 50117 50117 50117 30921 1640 625 642 46613 46134 46613 22617 4397 50118 50117 50117 44617 50118 50117 50117 50117 45152 50118 50117 50117 50117 7912 863 14385 1640 7912 863 1215 597 1215 7912 863 1215 487 2688 176 12436 6 7912 863 1215 500 1215 4154 47300 1215 487 2688 4397 50118 50117 50117 50117 30921 1640 49728 4397 50118 50117 50117 50117 24303 50118 50117 50117 24303 50118 50117 24303 50118 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+12/09/2021 17:22:23 - INFO - __main__ -   *** Example ***
+12/09/2021 17:22:23 - INFO - __main__ -   label: 0
+12/09/2021 17:22:23 - INFO - __main__ -   input_tokens: ['<s>', 'void', '_register', '_', 'sys', 'ctl', '_', 'root', '(', 'struct', '_c', 'tl', '_', 'table', '_', 'root', '_*', 'root', ')', 'Ċ', '{', 'Ċ', 'ĉ', 'spin', '_', 'lock', '(&', 'sys', 'ctl', '_', 'lock', ');', 'Ċ', 'ĉ', 'list', '_', 'add', '_', 'tail', '(&', 'root', '->', 'root', '_', 'list', ',', '_&', 'sys', 'ctl', '_', 'table', '_', 'root', '.', 'root', '_', 'list', ');', 'Ċ', 'ĉ', 'spin', '_', 'un', 'lock', '(&', 'sys', 'ctl', '_', 'lock', ');', 'Ċ', '}', 'Ċ', '</s>']
+12/09/2021 17:22:23 - INFO - __main__ -   input_ids: 0 47908 5124 1215 43103 47074 1215 29059 1640 25384 740 34842 1215 14595 1215 29059 1009 29059 43 50118 45152 50118 50117 36613 1215 8292 49763 43103 47074 1215 8292 4397 50118 50117 8458 1215 4917 1215 17624 49763 29059 46613 29059 1215 8458 6 359 43103 47074 1215 14595 1215 29059 4 29059 1215 8458 4397 50118 50117 36613 1215 879 8292 49763 43103 47074 1215 8292 4397 50118 24303 50118 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+12/09/2021 17:22:23 - INFO - __main__ -   *** Example ***
+12/09/2021 17:22:23 - INFO - __main__ -   label: 0
+12/09/2021 17:22:23 - INFO - __main__ -   input_tokens: ['<s>', 'Web', 'Page', 'Private', '::', '~', 'Web', 'Page', 'Private', '()', 'Ċ', '{', 'Ċ', '_', '_', '_', '_m', '_', 'web', 'Page', '->', 'set', 'V', 'isible', '(', 'false', ');', 'Ċ', '_', '_', '_', '_if', '_(', 'B', 'acking', 'Store', 'Private', '::', 'current', 'B', 'acking', 'Store', 'Owner', '()', '_==', '_m', '_', 'web', 'Page', ')', 'Ċ', '_', '_', '_', '_', '_', '_', '_', '_Back', 'ing', 'Store', 'Private', '::', 'set', 'Current', 'B', 'acking', 'Store', 'Owner', '(', '0', ');', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'web', 'Settings', ';', 'Ċ', '_', '_', '_', '_m', '_', 'web', 'Settings', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'cookie', 'Jar', ';', 'Ċ', '_', '_', '_', '_m', '_', 'cookie', 'Jar', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'webkit', 'Thread', 'View', 'port', 'Access', 'or', ';', 'Ċ', '_', '_', '_', '_m', '_', 'webkit', 'Thread', 'View', 'port', 'Access', 'or', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'back', 'ing', 'Store', 'Client', ';', 'Ċ', '_', '_', '_', '_m', '_', 'back', 'ing', 'Store', 'Client', '_=', '_0', ';', 'Ċ', '_', '_', '_', '_m', '_', 'back', 'ing', 'Store', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'page', ';', 'Ċ', '_', '_', '_', '_m', '_', 'page', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'trans', 'formation', 'Matrix', ';', 'Ċ', '_', '_', '_', '_m', '_', 'trans', 'formation', 'Matrix', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'in', 'Page', 'Search', 'Manager', ';', 'Ċ', '_', '_', '_', '_m', '_', 'in', 'Page', 'Search', 'Manager', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'selection', 'Handler', ';', 'Ċ', '_', '_', '_', '_m', '_', 'selection', 'Handler', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'input', 'Handler', ';', 'Ċ', '_', '_', '_', '_m', '_', 'input', 'Handler', '_=', '_0', ';', 'ĊĊ', '_', '_', '_', '_delete', '_m', '_', 'touch', 'Event', 'Handler', ';', 'Ċ', '_', '_', '_', '_m', '_', 'touch', 'Event', 'Handler', '_=', '_0', ';', 'Ċ', 'Ċ', '#', 'if', '_!', 'defined', '(', 'PU', 'BLIC', '_', 'BU', 'ILD', ')', '_||', '_!', 'PU', 'BLIC', '_', 'BU', 'ILD', 'Ċ', '_', '_', '_', '_delete', '_m', '_', 'dump', 'Render', 'Tree', ';', 'Ċ', '_', '_', '_', '_m', '_', 'dump', 'Render', 'Tree', '_=', '_0', ';', 'Ċ', '#', 'endif', 'ĊĊ', '_', '_', '_', '_Authentication', 'Chall', 'enge', 'Manager', '::', 'instance', '()', '->', 'page', 'De', 'leted', '(', 'this', ');', 'Ċ', '}', 'Ċ', '</s>']
+12/09/2021 17:22:23 - INFO - __main__ -   input_ids: 0 27521 21823 38076 38304 34437 27521 21823 38076 43048 50118 45152 50118 1437 1437 1437 475 1215 10534 21823 46613 8738 846 38468 1640 22303 4397 50118 1437 1437 1437 114 36 387 7361 40266 38076 38304 28311 387 7361 40266 46182 43048 45994 475 1215 10534 21823 43 50118 1437 1437 1437 1437 1437 1437 1437 3727 154 40266 38076 38304 8738 42124 387 7361 40266 46182 1640 288 4397 50140 1437 1437 1437 17462 475 1215 10534 47718 131 50118 1437 1437 1437 475 1215 10534 47718 5457 321 131 50140 1437 1437 1437 17462 475 1215 47884 44768 131 50118 1437 1437 1437 475 1215 47884 44768 5457 321 131 50140 1437 1437 1437 17462 475 1215 49286 47563 22130 3427 35505 368 131 50118 1437 1437 1437 475 1215 49286 47563 22130 3427 35505 368 5457 321 131 50140 1437 1437 1437 17462 475 1215 1644 154 40266 47952 131 50118 1437 1437 1437 475 1215 1644 154 40266 47952 5457 321 131 50118 1437 1437 1437 475 1215 1644 154 40266 5457 321 131 50140 1437 1437 1437 17462 475 1215 8596 131 50118 1437 1437 1437 475 1215 8596 5457 321 131 50140 1437 1437 1437 17462 475 1215 9981 26941 47360 131 50118 1437 1437 1437 475 1215 9981 26941 47360 5457 321 131 50140 1437 1437 1437 17462 475 1215 179 21823 39954 44854 131 50118 1437 1437 1437 475 1215 179 21823 39954 44854 5457 321 131 50140 1437 1437 1437 17462 475 1215 44209 49191 131 50118 1437 1437 1437 475 1215 44209 49191 5457 321 131 50140 1437 1437 1437 17462 475 1215 46797 49191 131 50118 1437 1437 1437 475 1215 46797 49191 5457 321 131 50140 1437 1437 1437 17462 475 1215 26673 44879 49191 131 50118 1437 1437 1437 475 1215 26673 44879 49191 5457 321 131 50118 50118 10431 1594 27785 30764 1640 16821 43743 1215 19159 27391 43 45056 27785 16821 43743 1215 19159 27391 50118 1437 1437 1437 17462 475 1215 46593 48440 33731 131 50118 1437 1437 1437 475 1215 46593 48440 33731 5457 321 131 50118 10431 49741 50140 1437 1437 1437 46629 41584 20526 44854 38304 48768 43048 46613 8596 13365 36140 1640 9226 4397 50118 24303 50118 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+100%|██████████| 18864/18864 [00:12<00:00, 1502.43it/s]
+12/09/2021 17:22:45 - INFO - __main__ -   ***** Running training *****
+12/09/2021 17:22:45 - INFO - __main__ -     Num examples = 150908
+12/09/2021 17:22:45 - INFO - __main__ -     Num Epochs = 10
+12/09/2021 17:22:45 - INFO - __main__ -     Instantaneous batch size per GPU = 16
+12/09/2021 17:22:45 - INFO - __main__ -     Total train batch size = 16
+12/09/2021 17:22:45 - INFO - __main__ -     Gradient Accumulation steps = 1
+12/09/2021 17:22:45 - INFO - __main__ -     Total optimization steps = 94320
+epoch 0 loss 0.11304: 100%|█████████▉| 9431/9432 [42:37<00:00,  3.68it/s]12/09/2021 18:05:23 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 18:05:23 - INFO - __main__ -     Num examples = 18864
+12/09/2021 18:05:23 - INFO - __main__ -     Batch size = 16
+12/09/2021 18:07:07 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 18:07:07 - INFO - __main__ -     eval_f1 = 0.8777
+12/09/2021 18:07:07 - INFO - __main__ -     eval_precision = 0.9684
+12/09/2021 18:07:07 - INFO - __main__ -     eval_recall = 0.8025
+12/09/2021 18:07:07 - INFO - __main__ -     eval_threshold = 0.5
+12/09/2021 18:07:07 - INFO - __main__ -     ********************
+12/09/2021 18:07:07 - INFO - __main__ -     Best f1:0.8777
+12/09/2021 18:07:07 - INFO - __main__ -     ********************
+12/09/2021 18:07:08 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.11304: 100%|██████████| 9432/9432 [44:23<00:00,  3.54it/s]
+epoch 1 loss 0.06266: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s]12/09/2021 18:49:49 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 18:49:49 - INFO - __main__ -     Num examples = 18864
+12/09/2021 18:49:49 - INFO - __main__ -     Batch size = 16
+12/09/2021 18:51:33 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 18:51:33 - INFO - __main__ -     eval_f1 = 0.8875
+12/09/2021 18:51:33 - INFO - __main__ -     eval_precision = 0.9701
+12/09/2021 18:51:33 - INFO - __main__ -     eval_recall = 0.8179
+12/09/2021 18:51:33 - INFO - __main__ -     eval_threshold = 0.5
+12/09/2021 18:51:33 - INFO - __main__ -     ********************
+12/09/2021 18:51:33 - INFO - __main__ -     Best f1:0.8875
+12/09/2021 18:51:33 - INFO - __main__ -     ********************
+12/09/2021 18:51:35 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 1 loss 0.06266: 100%|██████████| 9432/9432 [44:26<00:00,  3.54it/s]
+epoch 2 loss 0.0539: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s]12/09/2021 19:34:16 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 19:34:16 - INFO - __main__ -     Num examples = 18864
+12/09/2021 19:34:16 - INFO - __main__ -     Batch size = 16
+12/09/2021 19:36:00 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 19:36:00 - INFO - __main__ -     eval_f1 = 0.9057
+12/09/2021 19:36:00 - INFO - __main__ -     eval_precision = 0.9596
+12/09/2021 19:36:00 - INFO - __main__ -     eval_recall = 0.8575
+12/09/2021 19:36:00 - INFO - __main__ -     eval_threshold = 0.5
+12/09/2021 19:36:00 - INFO - __main__ -     ********************
+12/09/2021 19:36:00 - INFO - __main__ -     Best f1:0.9057
+12/09/2021 19:36:00 - INFO - __main__ -     ********************
+12/09/2021 19:36:02 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 2 loss 0.0539: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 3 loss 0.04465: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s]12/09/2021 20:18:43 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 20:18:43 - INFO - __main__ -     Num examples = 18864
+12/09/2021 20:18:43 - INFO - __main__ -     Batch size = 16
+12/09/2021 20:20:27 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 20:20:27 - INFO - __main__ -     eval_f1 = 0.9148
+12/09/2021 20:20:27 - INFO - __main__ -     eval_precision = 0.9745
+12/09/2021 20:20:27 - INFO - __main__ -     eval_recall = 0.862
+12/09/2021 20:20:27 - INFO - __main__ -     eval_threshold = 0.5
+12/09/2021 20:20:27 - INFO - __main__ -     ********************
+12/09/2021 20:20:27 - INFO - __main__ -     Best f1:0.9148
+12/09/2021 20:20:27 - INFO - __main__ -     ********************
+12/09/2021 20:20:29 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 3 loss 0.04465: 100%|██████████| 9432/9432 [44:26<00:00,  3.54it/s]
+epoch 4 loss 0.03505: 100%|█████████▉| 9431/9432 [42:40<00:00,  3.67it/s]12/09/2021 21:03:09 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 21:03:09 - INFO - __main__ -     Num examples = 18864
+12/09/2021 21:03:09 - INFO - __main__ -     Batch size = 16
+12/09/2021 21:04:54 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 21:04:54 - INFO - __main__ -     eval_f1 = 0.9117
+12/09/2021 21:04:54 - INFO - __main__ -     eval_precision = 0.9573
+12/09/2021 21:04:54 - INFO - __main__ -     eval_recall = 0.8702
+12/09/2021 21:04:54 - INFO - __main__ -     eval_threshold = 0.5
+epoch 4 loss 0.03505: 100%|██████████| 9432/9432 [44:24<00:00,  3.54it/s]
+epoch 5 loss 0.02666: 100%|█████████▉| 9431/9432 [42:40<00:00,  3.69it/s]12/09/2021 21:47:34 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 21:47:34 - INFO - __main__ -     Num examples = 18864
+12/09/2021 21:47:34 - INFO - __main__ -     Batch size = 16
+12/09/2021 21:49:18 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 21:49:18 - INFO - __main__ -     eval_f1 = 0.917
+12/09/2021 21:49:18 - INFO - __main__ -     eval_precision = 0.967
+12/09/2021 21:49:18 - INFO - __main__ -     eval_recall = 0.872
+12/09/2021 21:49:18 - INFO - __main__ -     eval_threshold = 0.5
+12/09/2021 21:49:18 - INFO - __main__ -     ********************
+12/09/2021 21:49:18 - INFO - __main__ -     Best f1:0.917
+12/09/2021 21:49:18 - INFO - __main__ -     ********************
+12/09/2021 21:49:20 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 5 loss 0.02666: 100%|██████████| 9432/9432 [44:26<00:00,  3.54it/s]
+epoch 6 loss 0.01839: 100%|█████████▉| 9431/9432 [42:40<00:00,  3.69it/s]12/09/2021 22:32:00 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 22:32:00 - INFO - __main__ -     Num examples = 18864
+12/09/2021 22:32:00 - INFO - __main__ -     Batch size = 16
+12/09/2021 22:33:45 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 22:33:45 - INFO - __main__ -     eval_f1 = 0.9159
+12/09/2021 22:33:45 - INFO - __main__ -     eval_precision = 0.9505
+12/09/2021 22:33:45 - INFO - __main__ -     eval_recall = 0.8837
+12/09/2021 22:33:45 - INFO - __main__ -     eval_threshold = 0.5
+epoch 6 loss 0.01839: 100%|██████████| 9432/9432 [44:25<00:00,  3.54it/s]
+epoch 7 loss 0.01345: 100%|█████████▉| 9431/9432 [42:40<00:00,  3.69it/s]12/09/2021 23:16:25 - INFO - __main__ -   ***** Running evaluation *****
+12/09/2021 23:16:25 - INFO - __main__ -     Num examples = 18864
+12/09/2021 23:16:25 - INFO - __main__ -     Batch size = 16
+12/09/2021 23:18:10 - INFO - __main__ -   ***** Eval results *****
+12/09/2021 23:18:10 - INFO - __main__ -     eval_f1 = 0.9132
+12/09/2021 23:18:10 - INFO - __main__ -     eval_precision = 0.9459
+12/09/2021 23:18:10 - INFO - __main__ -     eval_recall = 0.8828
+12/09/2021 23:18:10 - INFO - __main__ -     eval_threshold = 0.5
+epoch 7 loss 0.01345: 100%|██████████| 9432/9432 [44:24<00:00,  3.54it/s]
+epoch 8 loss 0.00866: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.69it/s]12/10/2021 00:00:51 - INFO - __main__ -   ***** Running evaluation *****
+12/10/2021 00:00:51 - INFO - __main__ -     Num examples = 18864
+12/10/2021 00:00:51 - INFO - __main__ -     Batch size = 16
+12/10/2021 00:02:35 - INFO - __main__ -   ***** Eval results *****
+12/10/2021 00:02:35 - INFO - __main__ -     eval_f1 = 0.912
+12/10/2021 00:02:35 - INFO - __main__ -     eval_precision = 0.9484
+12/10/2021 00:02:35 - INFO - __main__ -     eval_recall = 0.8783
+12/10/2021 00:02:35 - INFO - __main__ -     eval_threshold = 0.5
+epoch 8 loss 0.00866: 100%|██████████| 9432/9432 [44:25<00:00,  3.54it/s]
+epoch 9 loss 0.00606: 100%|█████████▉| 9431/9432 [42:42<00:00,  3.68it/s]12/10/2021 00:45:17 - INFO - __main__ -   ***** Running evaluation *****
+12/10/2021 00:45:17 - INFO - __main__ -     Num examples = 18864
+12/10/2021 00:45:17 - INFO - __main__ -     Batch size = 16
+12/10/2021 00:47:02 - INFO - __main__ -   ***** Eval results *****
+12/10/2021 00:47:02 - INFO - __main__ -     eval_f1 = 0.9126
+12/10/2021 00:47:02 - INFO - __main__ -     eval_precision = 0.9415
+12/10/2021 00:47:02 - INFO - __main__ -     eval_recall = 0.8855
+12/10/2021 00:47:02 - INFO - __main__ -     eval_threshold = 0.5
+epoch 9 loss 0.00606: 100%|██████████| 9432/9432 [44:26<00:00,  3.54it/s]
+100%|██████████| 18864/18864 [00:12<00:00, 1507.99it/s]
+12/10/2021 00:47:19 - INFO - __main__ -   ***** Running Test *****
+12/10/2021 00:47:19 - INFO - __main__ -     Num examples = 18864
+12/10/2021 00:47:19 - INFO - __main__ -     Batch size = 16
+12/10/2021 00:49:03 - INFO - __main__ -   ***** Test results *****
+12/10/2021 00:49:03 - INFO - __main__ -     test_accuracy = 0.9909
+12/10/2021 00:49:03 - INFO - __main__ -     test_f1 = 0.9142
+12/10/2021 00:49:03 - INFO - __main__ -     test_precision = 0.9712
+12/10/2021 00:49:03 - INFO - __main__ -     test_recall = 0.8635
+12/10/2021 00:49:03 - INFO - __main__ -     test_threshold = 0.5

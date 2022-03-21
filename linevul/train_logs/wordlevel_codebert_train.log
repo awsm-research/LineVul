@@ -1,0 +1,154 @@
+(hf_xfmr) michael@m4:~/HDD18TB/vul_msr/codebert$ python codebert_main.py     --use_word_level_tokenizer     --model_name=model.bin     --output_dir=./saved_models     --model_type=roberta     --tokenizer_name=microsoft/codebert-base     --model_name_or_path=microsoft/codebert-base     --do_train     --do_test     --train_data_file=../data/big-vul_dataset/train.csv     --eval_data_file=../data/big-vul_dataset/val.csv     --test_data_file=../data/big-vul_dataset/test.csv     --num_attention_heads=12     --epochs 10     --block_size 512     --train_batch_size 16     --eval_batch_size 16     --learning_rate 2e-5     --max_grad_norm 1.0     --evaluate_during_training     --seed 123456  2>&1 | tee train.log
+01/17/2022 20:41:37 - WARNING - __main__ -   device: cuda, n_gpu: 1
+Some weights of the model checkpoint at microsoft/codebert-base were not used when initializing RobertaForSequenceClassification: ['pooler.dense.weight', 'pooler.dense.bias']
+- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at microsoft/codebert-base and are newly initialized: ['classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight', 'classifier.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+01/17/2022 20:41:42 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../data/big-vul_dataset/train.csv', output_dir='./saved_models', model_type='roberta', block_size=512, eval_data_file='../data/big-vul_dataset/val.csv', test_data_file='../data/big-vul_dataset/test.csv', model_name='model.bin', model_name_or_path='microsoft/codebert-base', config_name='', use_non_pretrained_model=False, tokenizer_name='microsoft/codebert-base', code_length=256, do_train=True, do_eval=False, do_test=True, evaluate_during_training=True, do_local_explanation=False, reasoning_method=None, train_batch_size=16, eval_batch_size=16, gradient_accumulation_steps=1, learning_rate=2e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, max_steps=-1, warmup_steps=0, seed=123456, epochs=10, effort_at_top_k=0.2, top_k_recall_by_lines=0.01, top_k_recall_by_pred_prob=0.2, do_sorting_by_line_scores=False, do_sorting_by_pred_prob=False, top_k_constant=10, num_attention_heads=12, write_raw_preds=False, use_word_level_tokenizer=True, n_gpu=1, device=device(type='cuda'))
+using wordlevel tokenizer!
+100%|██████████| 150908/150908 [00:20<00:00, 7436.94it/s]
+01/17/2022 20:42:35 - INFO - __main__ -   *** Example ***
+01/17/2022 20:42:35 - INFO - __main__ -   label: 0
+01/17/2022 20:42:35 - INFO - __main__ -   input_tokens: []
+01/17/2022 20:42:35 - INFO - __main__ -   input_ids: 0 38 53 15 38908 5 28 50 10 12 0 2438 1993 37250 7 18951 4122 7 14 59 50 141 17 10 47 5 50 34 0 35 12 14 59 50 40 11719 10 47 5 0 21 50 77 1500 23 11719 35 12 0 5 0 6 0 11 18 5 32 11 13 18 5 0 21 50 77 4022 11 13 46 14 5 1871 23 32 10 18 5 32 11 46 12 2438 16 86 9 0 7 2438 16 390 9 20 4122 7 4122 16 1500 9 50 7 37250 9 0 5 1871 295 2438 11 14 5 37250 40 32 10 18 5 37250 8 390 8 4022 11 46 12 0 5 0 6 0 11 18 5 32 11 13 13 13 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+01/17/2022 20:42:35 - INFO - __main__ -   *** Example ***
+01/17/2022 20:42:35 - INFO - __main__ -   label: 0
+01/17/2022 20:42:35 - INFO - __main__ -   input_tokens: []
+01/17/2022 20:42:35 - INFO - __main__ -   input_ids: 0 36 0 5 30 0 15 246 10 12 900 45 21972 11 2751 45 246 8 0 6 20 0 16 0 11 734 45 21972 11 13 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+01/17/2022 20:42:35 - INFO - __main__ -   *** Example ***
+01/17/2022 20:42:35 - INFO - __main__ -   label: 0
+01/17/2022 20:42:35 - INFO - __main__ -   input_tokens: []
+01/17/2022 20:42:35 - INFO - __main__ -   input_ids: 0 4618 842 4618 55 12 7092 8 0 5 91 11 14 5 0 19 0 55 23 7092 10 0 19 0 5 17 11 706 20968 7 20968 9 17 7 706 0 7 0 9 17 7 706 0 7 0 9 17 7 706 0 7 0 9 17 7 8950 9 17 7 706 3546 7 3546 9 17 7 706 38233 7 38233 9 17 7 706 0 7 0 9 17 7 706 0 7 0 9 17 7 706 16325 7 16325 9 17 7 706 34198 7 34198 9 17 7 62 14 110 236 5 0 10 61 110 0 706 39735 7 39735 9 17 7 62 132 0 19 523 92 0 5 95 11 13 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+100%|██████████| 18864/18864 [00:02<00:00, 7878.76it/s]
+01/17/2022 20:42:45 - INFO - __main__ -   ***** Running training *****
+01/17/2022 20:42:45 - INFO - __main__ -     Num examples = 150908
+01/17/2022 20:42:45 - INFO - __main__ -     Num Epochs = 10
+01/17/2022 20:42:45 - INFO - __main__ -     Instantaneous batch size per GPU = 16
+01/17/2022 20:42:45 - INFO - __main__ -     Total train batch size = 16
+01/17/2022 20:42:45 - INFO - __main__ -     Gradient Accumulation steps = 1
+01/17/2022 20:42:45 - INFO - __main__ -     Total optimization steps = 94320
+epoch 0 loss 0.21624: 100%|█████████▉| 9431/9432 [42:38<00:00,  3.67it/s]01/17/2022 21:25:23 - INFO - __main__ -   ***** Running evaluation *****
+01/17/2022 21:25:23 - INFO - __main__ -     Num examples = 18864
+01/17/2022 21:25:23 - INFO - __main__ -     Batch size = 16
+01/17/2022 21:27:08 - INFO - __main__ -   ***** Eval results *****
+01/17/2022 21:27:08 - INFO - __main__ -     eval_f1 = 0.2731
+01/17/2022 21:27:08 - INFO - __main__ -     eval_precision = 0.7352
+01/17/2022 21:27:08 - INFO - __main__ -     eval_recall = 0.1677
+01/17/2022 21:27:08 - INFO - __main__ -     eval_threshold = 0.5
+01/17/2022 21:27:08 - INFO - __main__ -     ********************
+01/17/2022 21:27:08 - INFO - __main__ -     Best f1:0.2731
+01/17/2022 21:27:08 - INFO - __main__ -     ********************
+01/17/2022 21:27:09 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.21624: 100%|██████████| 9432/9432 [44:23<00:00,  3.54it/s]
+epoch 1 loss 0.18402: 100%|█████████▉| 9431/9432 [42:42<00:00,  3.68it/s]01/17/2022 22:09:51 - INFO - __main__ -   ***** Running evaluation *****
+01/17/2022 22:09:51 - INFO - __main__ -     Num examples = 18864
+01/17/2022 22:09:51 - INFO - __main__ -     Batch size = 16
+01/17/2022 22:11:35 - INFO - __main__ -   ***** Eval results *****
+01/17/2022 22:11:35 - INFO - __main__ -     eval_f1 = 0.3436
+01/17/2022 22:11:35 - INFO - __main__ -     eval_precision = 0.7131
+01/17/2022 22:11:35 - INFO - __main__ -     eval_recall = 0.2263
+01/17/2022 22:11:35 - INFO - __main__ -     eval_threshold = 0.5
+01/17/2022 22:11:35 - INFO - __main__ -     ********************
+01/17/2022 22:11:35 - INFO - __main__ -     Best f1:0.3436
+01/17/2022 22:11:35 - INFO - __main__ -     ********************
+01/17/2022 22:11:37 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 1 loss 0.18402: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 2 loss 0.16965: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s]01/17/2022 22:54:18 - INFO - __main__ -   ***** Running evaluation *****
+01/17/2022 22:54:18 - INFO - __main__ -     Num examples = 18864
+01/17/2022 22:54:18 - INFO - __main__ -     Batch size = 16
+01/17/2022 22:56:03 - INFO - __main__ -   ***** Eval results *****
+01/17/2022 22:56:03 - INFO - __main__ -     eval_f1 = 0.3438
+01/17/2022 22:56:03 - INFO - __main__ -     eval_precision = 0.8362
+01/17/2022 22:56:03 - INFO - __main__ -     eval_recall = 0.2164
+01/17/2022 22:56:03 - INFO - __main__ -     eval_threshold = 0.5
+01/17/2022 22:56:03 - INFO - __main__ -     ********************
+01/17/2022 22:56:03 - INFO - __main__ -     Best f1:0.3438
+01/17/2022 22:56:03 - INFO - __main__ -     ********************
+01/17/2022 22:56:04 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 2 loss 0.16965: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 3 loss 0.15223: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s]01/17/2022 23:38:46 - INFO - __main__ -   ***** Running evaluation *****
+01/17/2022 23:38:46 - INFO - __main__ -     Num examples = 18864
+01/17/2022 23:38:46 - INFO - __main__ -     Batch size = 16
+01/17/2022 23:40:30 - INFO - __main__ -   ***** Eval results *****
+01/17/2022 23:40:30 - INFO - __main__ -     eval_f1 = 0.4008
+01/17/2022 23:40:30 - INFO - __main__ -     eval_precision = 0.7659
+01/17/2022 23:40:30 - INFO - __main__ -     eval_recall = 0.2714
+01/17/2022 23:40:30 - INFO - __main__ -     eval_threshold = 0.5
+01/17/2022 23:40:30 - INFO - __main__ -     ********************
+01/17/2022 23:40:30 - INFO - __main__ -     Best f1:0.4008
+01/17/2022 23:40:30 - INFO - __main__ -     ********************
+01/17/2022 23:40:31 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 3 loss 0.15223: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 4 loss 0.1353: 100%|█████████▉| 9431/9432 [42:41<00:00,  3.68it/s] 01/18/2022 00:23:13 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 00:23:13 - INFO - __main__ -     Num examples = 18864
+01/18/2022 00:23:13 - INFO - __main__ -     Batch size = 16
+01/18/2022 00:24:58 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 00:24:58 - INFO - __main__ -     eval_f1 = 0.4309
+01/18/2022 00:24:58 - INFO - __main__ -     eval_precision = 0.683
+01/18/2022 00:24:58 - INFO - __main__ -     eval_recall = 0.3147
+01/18/2022 00:24:58 - INFO - __main__ -     eval_threshold = 0.5
+01/18/2022 00:24:58 - INFO - __main__ -     ********************
+01/18/2022 00:24:58 - INFO - __main__ -     Best f1:0.4309
+01/18/2022 00:24:58 - INFO - __main__ -     ********************
+01/18/2022 00:24:59 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 4 loss 0.1353: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 5 loss 0.11815: 100%|█████████▉| 9431/9432 [42:42<00:00,  3.68it/s]01/18/2022 01:07:42 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 01:07:42 - INFO - __main__ -     Num examples = 18864
+01/18/2022 01:07:42 - INFO - __main__ -     Batch size = 16
+01/18/2022 01:09:26 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 01:09:26 - INFO - __main__ -     eval_f1 = 0.4242
+01/18/2022 01:09:26 - INFO - __main__ -     eval_precision = 0.6584
+01/18/2022 01:09:26 - INFO - __main__ -     eval_recall = 0.3129
+01/18/2022 01:09:26 - INFO - __main__ -     eval_threshold = 0.5
+epoch 5 loss 0.11815: 100%|██████████| 9432/9432 [44:27<00:00,  3.54it/s]
+epoch 6 loss 0.10264: 100%|█████████▉| 9431/9432 [42:44<00:00,  3.67it/s]01/18/2022 01:52:11 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 01:52:11 - INFO - __main__ -     Num examples = 18864
+01/18/2022 01:52:11 - INFO - __main__ -     Batch size = 16
+01/18/2022 01:53:55 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 01:53:55 - INFO - __main__ -     eval_f1 = 0.4568
+01/18/2022 01:53:55 - INFO - __main__ -     eval_precision = 0.5928
+01/18/2022 01:53:55 - INFO - __main__ -     eval_recall = 0.3715
+01/18/2022 01:53:55 - INFO - __main__ -     eval_threshold = 0.5
+01/18/2022 01:53:55 - INFO - __main__ -     ********************
+01/18/2022 01:53:55 - INFO - __main__ -     Best f1:0.4568
+01/18/2022 01:53:55 - INFO - __main__ -     ********************
+01/18/2022 01:53:56 - INFO - __main__ -   Saving model checkpoint to ./saved_models/checkpoint-best-f1/model.bin
+epoch 6 loss 0.10264: 100%|██████████| 9432/9432 [44:30<00:00,  3.53it/s]
+epoch 7 loss 0.08925: 100%|█████████▉| 9431/9432 [42:46<00:00,  3.68it/s]01/18/2022 02:36:42 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 02:36:42 - INFO - __main__ -     Num examples = 18864
+01/18/2022 02:36:42 - INFO - __main__ -     Batch size = 16
+01/18/2022 02:38:27 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 02:38:27 - INFO - __main__ -     eval_f1 = 0.4491
+01/18/2022 02:38:27 - INFO - __main__ -     eval_precision = 0.6077
+01/18/2022 02:38:27 - INFO - __main__ -     eval_recall = 0.3562
+01/18/2022 02:38:27 - INFO - __main__ -     eval_threshold = 0.5
+epoch 7 loss 0.08925: 100%|██████████| 9432/9432 [44:30<00:00,  3.53it/s]
+epoch 8 loss 0.07684: 100%|█████████▉| 9431/9432 [42:46<00:00,  3.68it/s]01/18/2022 03:21:13 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 03:21:13 - INFO - __main__ -     Num examples = 18864
+01/18/2022 03:21:13 - INFO - __main__ -     Batch size = 16
+01/18/2022 03:22:58 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 03:22:58 - INFO - __main__ -     eval_f1 = 0.4482
+01/18/2022 03:22:58 - INFO - __main__ -     eval_precision = 0.5967
+01/18/2022 03:22:58 - INFO - __main__ -     eval_recall = 0.3589
+01/18/2022 03:22:58 - INFO - __main__ -     eval_threshold = 0.5
+epoch 8 loss 0.07684: 100%|██████████| 9432/9432 [44:30<00:00,  3.53it/s]
+epoch 9 loss 0.06643: 100%|█████████▉| 9431/9432 [42:45<00:00,  3.68it/s]01/18/2022 04:05:43 - INFO - __main__ -   ***** Running evaluation *****
+01/18/2022 04:05:43 - INFO - __main__ -     Num examples = 18864
+01/18/2022 04:05:43 - INFO - __main__ -     Batch size = 16
+01/18/2022 04:07:28 - INFO - __main__ -   ***** Eval results *****
+01/18/2022 04:07:28 - INFO - __main__ -     eval_f1 = 0.4496
+01/18/2022 04:07:28 - INFO - __main__ -     eval_precision = 0.559
+01/18/2022 04:07:28 - INFO - __main__ -     eval_recall = 0.376
+01/18/2022 04:07:28 - INFO - __main__ -     eval_threshold = 0.5
+epoch 9 loss 0.06643: 100%|██████████| 9432/9432 [44:30<00:00,  3.53it/s]
+100%|██████████| 18864/18864 [00:02<00:00, 7987.12it/s]
+01/18/2022 04:07:34 - INFO - __main__ -   ***** Running Test *****
+01/18/2022 04:07:34 - INFO - __main__ -     Num examples = 18864
+01/18/2022 04:07:34 - INFO - __main__ -     Batch size = 16
+01/18/2022 04:09:19 - INFO - __main__ -   ***** Test results *****
+01/18/2022 04:09:19 - INFO - __main__ -     test_accuracy = 0.9474
+01/18/2022 04:09:19 - INFO - __main__ -     test_f1 = 0.4226
+01/18/2022 04:09:19 - INFO - __main__ -     test_precision = 0.5475
+01/18/2022 04:09:19 - INFO - __main__ -     test_recall = 0.3441
+01/18/2022 04:09:19 - INFO - __main__ -     test_threshold = 0.5

@@ -1,0 +1,45 @@
+
+Reasoning Method: attention
+total predicted vulnerable lines: 22707
+total lines: 504886
+total flaw lines: 3966
+total flaw lines in predicted as vulnerable: 2007
+top0.2-Effort: 0.0084
+total inspected line to find out 0.2 of flaw lines: 4219
+top0.01-Recall: 0.2239
+
+Reasoning Method: attention
+total predicted vulnerable lines: 25978
+total lines: 504886
+total flaw lines: 3966
+total flaw lines in predicted as vulnerable: 2664
+top0.2-Effort: 0.0075
+total inspected line to find out 0.2 of flaw lines: 3794
+top0.01-Recall: 0.2428
+
+Reasoning Method: attention
+total predicted vulnerable lines: 22713
+total lines: 504886
+total flaw lines: 3966
+total flaw lines in predicted as vulnerable: 2047
+top0.2-Effort: 0.0084
+total inspected line to find out 0.2 of flaw lines: 4245
+top0.01-Recall: 0.2244
+
+Reasoning Method: attention
+total predicted vulnerable lines: 20607
+total lines: 504886
+total flaw lines: 3966
+total flaw lines in predicted as vulnerable: 2093
+top0.2-Effort: 0.0103
+total inspected line to find out 0.2 of flaw lines: 5181
+top0.01-Recall: 0.1952
+
+Reasoning Method: attention
+total predicted vulnerable lines: 25978
+total lines: 504886
+total flaw lines: 3966
+total flaw lines in predicted as vulnerable: 2664
+top0.2-Effort: 0.0075
+total inspected line to find out 0.2 of flaw lines: 3794
+top0.01-Recall: 0.2428
