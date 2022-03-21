@@ -183,6 +183,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   To reproduce the RQ1 result of BoW+RF, run the following commands:
   ```
   cd bow_rf
+  mkdir saved_models
   python rf_main.py
   ```
     
