@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="logo/todo" width="200" height="200">
+    <img src="logo/linevul_logo.png" width="200" height="200">
   </a>
   <h3 align="center">LineVul</h3>
   <p align="center">
@@ -17,6 +17,7 @@
     <li>
       <a href="#how-to-replicate">How to replicate</a>
         <ul>
+          <li><a href="#about-the-environment-setup">About the Environment Setup</a></li>
           <li><a href="#about-the-datasets">About the Datasets</a></li>
           <li><a href="#about-the-models">About the Models</a></li>
           <li><a href="#about-the-experiment-replication">About the Experiment Replication</a></li>
@@ -32,6 +33,27 @@
 </details>
 
 ## How to replicate 
+
+### About the Environment Setup
+First of all, clone this repository to your local machine and access the main dir via the following command:
+```python
+git clone https://github.com/anon-ai-research/LineVul.git
+cd LineVul
+```
+
+Then, install the python dependencies via the following command:
+```python
+pip install gdown
+pip install transformers
+pip install captum
+pip install torch
+pip install numpy
+pip install tqdm
+pip install pickle
+pip install sklearn
+pip install pandas
+pip install tokenizers
+```
 
 ### About the Datasets
 All of the dataset has the same number of columns (i.e., 39 cols), we focus on the following 3 columns to conduct our experiments:
@@ -56,39 +78,310 @@ LineVul  | BPE Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/LineV
 BPEBERT  | BPE Tokenizer + No Pre-training + BERT | MickyMike/BPEBERT
 WordlevelPretrainedBERT  | Wordlevel Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/WordlevelPretrainedBERT
 WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/WordlevelBERT
-BoWRF | Bag of Words + Random Forest | N/A
 
 #### How to access the models
-* All of the models included in our experiments can be found on the <a href="https://huggingface.co/MickyMike"> Model Hub </a> provided by HuggingFace
-* For your information, the models can also be downloaded from this <a href="todo"> Google Drive <a/>
+* All of the models included in our experiments can be downloaded from public Google Drive.
 
-### About the Experiment Replication
-  We provide <a href="todo">a csv file</a> that contains all of the raw function-level predictions by LineVul.
-
-#### How to replicate RQ1
-  To reproduce the RQ1 result, run the following commands (Inference only):
+### About the Experiment Replication  
+  We provide a csv file that contains all of the raw function-level predictions by LineVul, run the following commands to download:
+  ```python
+  cd linevul
+  cd results
+  gdown https://drive.google.com/uc?id=1WqvMoALIbL3V1KNQpGvvTIuc3TL5v5Q8
+  cd ../..
+  ```
   
-  To retrain the RQ1 model, run the following commands (Training + Inference):
-
-#### How to replicate RQ2
-  To reproduce the RQ2 result of Top-10 Accuracy, run the following commands:
+  We recommend to use **GPU with 8 GB up memory** for training since **BERT architecture is very computing intensive**. 
+  
+  Note. If the specified batch size is not suitable for your device, 
+  please modify **--eval_batch_size** and **--train_batch_size** to **fit your GPU memory.**
+  
+  Before replicating the experiment results, please download the dataset as described below, if you want to **retrain the model**, you need to **download training, evaluation, and testing dataset.** If you just need to **reproduce the results (inference only)**, then **downloading testing dataset** alone is enough.
+  
+  To download the testing dataset used for evaluation in our experiments, run the following commands:
+  ```python
+  cd data
+  cd big-vul_dataset
+  gdown https://drive.google.com/uc?id=1h0iFJbc5DGXCXXvvR6dru_Dms_b2zW4V
+  cd ../..
+  ```
+  
+  To download the training and evaluation dataset used for evaluation in our experiments, run the following commands:
+  ```python
+  cd data
+  cd big-vul_dataset
+  gdown https://drive.google.com/uc?id=1ldXyFvHG41VMrm260cK_JEPYqeb6e6Yw
+  gdown https://drive.google.com/uc?id=1yggncqivMcP0tzbh8-8Eu02Edwcs44WZ
+  cd ../..
+  ```
     
-  To reproduce the RQ2 result of IFA Accuracy, run the following commands:
+  To download the whole (i.e., train+val+test) unsplit dataset dataset, run the following commands:
+  ```python
+  cd data
+  cd big-vul_dataset
+  gdown https://drive.google.com/uc?id=10-kjbsA806Zdk54Ax8J3WvLKGTzN8CMX
+  cd ../..
+  ```   
+    
+#### How to replicate RQ1
+  Please first download the model "12heads_linevul_model.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1oodyQqRb9jEcvLMVVKILmu8qHyNwd-zH
+  cd ../../..
+  ```
+  
+  To reproduce the RQ1 result, run the following commands (Inference only):
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=12heads_linevul_model.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
+    
+  To retrain the RQ1 model, run the following commands (Training + Inference):
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_train \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --epochs 10 \
+    --block_size 512 \
+    --train_batch_size 16 \
+    --eval_batch_size 16 \
+    --learning_rate 2e-5 \
+    --max_grad_norm 1.0 \
+    --evaluate_during_training \
+    --seed 123456  2>&1 | tee train.log
+  ```
+    
+#### How to replicate RQ2
+  Please first download the model "12heads_linevul_model.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1oodyQqRb9jEcvLMVVKILmu8qHyNwd-zH
+  cd ../../..
+  ```
+  
+  To reproduce the RQ2 result of Top-10 Accuracy and IFA, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=12heads_linevul_model.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --do_local_explanation \
+    --top_k_constant=10 \
+    --reasoning_method=all \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
     
 #### How to replicate RQ3
-  To reproduce the RQ3 result of Effort@20%Recall, run the following commands:
-    
-  To reproduce the RQ3 result of Recall@1%LOC, run the following commands:
+  Please first download the model "12heads_linevul_model.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1oodyQqRb9jEcvLMVVKILmu8qHyNwd-zH
+  cd ../../..
+  ```
+  
+  To reproduce the RQ3 result of Effort@20%Recall and Recall@1%LOC, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=12heads_linevul_model.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --do_sorting_by_line_scores \
+    --effort_at_top_k=0.2 \
+    --top_k_recall_by_lines=0.01 \
+    --top_k_recall_by_pred_prob=0.2 \
+    --reasoning_method=all \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
 
 #### How to replicate the ablation study in the discussion section
-  To reproduce the result of XX model in the ablation study, run the following commands:
+  Please first download the model "12heads_linevul_model.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1oodyQqRb9jEcvLMVVKILmu8qHyNwd-zH
+  cd ../../..
+  ```
+  
+  To reproduce the result of LineVul model in the ablation study, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=12heads_linevul_model.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
+
+  Please first download the model "bpebert.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1uABZ8lurt7YMI-3bgxH8qLbm0jWANNoo
+  cd ../../..
+  ```
+
+  To reproduce the result of "BPE+No Pretraining+BERT" model in the ablation study, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=bpebert.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
+  
+  Please first download the model "WordlevelPretrainedBERT.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1cXeaWeBCpBuY6gPkRft2tS7SnDZrBed-
+  cd ../../..
+  ```
+  
+  To reproduce the result of "Word-Level+Pretraining(Codesearchnet)+BERT" model in the ablation study, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=WordlevelPretrainedBERT.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
     
-  To reproduce the result of XX model in the ablation study, run the following commands:
+  Please first download the model "WordlevelBERT.bin" through the following commands:
+  ```python
+  cd linevul
+  cd saved_models
+  cd checkpoint-best-f1
+  gdown https://drive.google.com/uc?id=1yTe42JK_Z5ZB9MHb4eIKIMu-uqH0fE_m
+  cd ../../..
+  ```
     
-  To reproduce the result of XX model in the ablation study, run the following commands:
+  To reproduce the result of "Word-Level+No Pretraining+BERT" model in the ablation study, run the following commands:
+  ```python
+  cd linevul
+  python linevul_main.py \
+    --model_name=WordlevelBERT.bin \
+    --output_dir=./saved_models \
+    --model_type=roberta \
+    --tokenizer_name=microsoft/codebert-base \
+    --model_name_or_path=microsoft/codebert-base \
+    --do_test \
+    --train_data_file=../data/big-vul_dataset/train.csv \
+    --eval_data_file=../data/big-vul_dataset/val.csv \
+    --test_data_file=../data/big-vul_dataset/test.csv \
+    --block_size 512 \
+    --eval_batch_size 512
+  ```
+## Appendix
+
+<div align="center">
+
+<h3>
+    <b>
+            Results of RQ1
+    </b>
+</h3>
+
     
-  To reproduce the result of XX model in the ablation study, run the following commands:
-    
+
+<h3>
+    <b>
+            Results of RQ2
+    </b>
+</h3>
+
+
+<h3>
+    <b>
+            Results of RQ3
+    </b>
+</h3>
+
+<h3>
+    <b>
+            Ablation Study Results of LineVul
+    </b>
+</h3>
+
+|                   Model                   |  F1  | Precision | Recall |
+|:-----------------------------------------:|:----:|:---------:|:------:|
+| LineVul (BPE+Pre-training on Code + BERT) | 0.91 |    0.97   |  0.86  |
+|        BPE + No Pre-training + BERT       | 0.80 |    0.86   |  0.75  |
+|  Word-level + Pre-training on Code + BERT | 0.42 |    0.55   |  0.34  |
+|    Word-level + No Pre-training + BERT    | 0.39 |    0.43   |  0.36  |
+|                  IVDetect                 | 0.35 |    0.23   |  0.72  |
+
+</div> 
+
+
+
 ## Acknowledgements
 * Special thanks to CodeBERT's developers
 * Special thanks to BigVulDataset Provider
