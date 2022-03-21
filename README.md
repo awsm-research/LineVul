@@ -39,13 +39,13 @@
 
 ### About the Environment Setup
 First of all, clone this repository to your local machine and access the main dir via the following command:
-```python
+```
 git clone https://github.com/anon-ai-research/LineVul.git
 cd LineVul
 ```
 
 Then, install the python dependencies via the following command:
-```python
+```
 pip install gdown
 pip install transformers
 pip install captum
@@ -87,7 +87,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
 
 ### About the Experiment Replication  
   We provide a csv file that contains all of the raw function-level predictions by LineVul, run the following commands to download:
-  ```python
+  ```
   cd linevul
   cd results
   gdown https://drive.google.com/uc?id=1WqvMoALIbL3V1KNQpGvvTIuc3TL5v5Q8
@@ -102,7 +102,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   Before replicating the experiment results, please download the dataset as described below, if you want to **retrain the model**, you need to **download training, evaluation, and testing dataset.** If you just need to **reproduce the results (inference only)**, then **downloading testing dataset** alone is enough.
   
   To download the testing dataset used for evaluation in our experiments, run the following commands:
-  ```python
+  ```
   cd data
   cd big-vul_dataset
   gdown https://drive.google.com/uc?id=1h0iFJbc5DGXCXXvvR6dru_Dms_b2zW4V
@@ -110,7 +110,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To download the training and evaluation dataset used for evaluation in our experiments, run the following commands:
-  ```python
+  ```
   cd data
   cd big-vul_dataset
   gdown https://drive.google.com/uc?id=1ldXyFvHG41VMrm260cK_JEPYqeb6e6Yw
@@ -119,7 +119,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
     
   To download the whole (i.e., train+val+test) unsplit dataset dataset, run the following commands:
-  ```python
+  ```
   cd data
   cd big-vul_dataset
   gdown https://drive.google.com/uc?id=10-kjbsA806Zdk54Ax8J3WvLKGTzN8CMX
@@ -128,7 +128,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     
 #### How to replicate RQ1
   Please first download the model "12heads_linevul_model.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -137,7 +137,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To reproduce the RQ1 result, run the following commands (Inference only):
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=12heads_linevul_model.bin \
@@ -154,7 +154,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
     
   To retrain the RQ1 model, run the following commands (Training + Inference):
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --output_dir=./saved_models \
@@ -178,7 +178,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     
 #### How to replicate RQ2
   Please first download the model "12heads_linevul_model.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -187,7 +187,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To reproduce the RQ2 result of Top-10 Accuracy and IFA, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=12heads_linevul_model.bin \
@@ -208,7 +208,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     
 #### How to replicate RQ3
   Please first download the model "12heads_linevul_model.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -217,7 +217,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To reproduce the RQ3 result of Effort@20%Recall and Recall@1%LOC, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=12heads_linevul_model.bin \
@@ -240,7 +240,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
 
 #### How to replicate the ablation study in the discussion section
   Please first download the model "12heads_linevul_model.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -249,7 +249,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To reproduce the result of LineVul model in the ablation study, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=12heads_linevul_model.bin \
@@ -266,7 +266,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
 
   Please first download the model "bpebert.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -275,7 +275,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
 
   To reproduce the result of "BPE+No Pretraining+BERT" model in the ablation study, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=bpebert.bin \
@@ -292,7 +292,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   Please first download the model "WordlevelPretrainedBERT.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -301,7 +301,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
   
   To reproduce the result of "Word-Level+Pretraining(Codesearchnet)+BERT" model in the ablation study, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=WordlevelPretrainedBERT.bin \
@@ -318,7 +318,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
     
   Please first download the model "WordlevelBERT.bin" through the following commands:
-  ```python
+  ```
   cd linevul
   cd saved_models
   cd checkpoint-best-f1
@@ -327,7 +327,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   ```
     
   To reproduce the result of "Word-Level+No Pretraining+BERT" model in the ablation study, run the following commands:
-  ```python
+  ```
   cd linevul
   python linevul_main.py \
     --model_name=WordlevelBERT.bin \
