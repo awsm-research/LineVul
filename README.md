@@ -179,6 +179,12 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     --evaluate_during_training \
     --seed 123456  2>&1 | tee train.log
   ```
+  
+  To reproduce the RQ1 result of BoW+RF, run the following commands:
+  ```
+  cd bow_rf
+  python rf_main.py
+  ```
     
 #### How to replicate RQ2
   Please first download the model "12heads_linevul_model.bin" through the following commands:
