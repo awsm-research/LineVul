@@ -222,6 +222,12 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   cd cppcheck
   python run.py
   ```
+  
+  Note. To install CppCheck, run the following command:
+  ```
+  sudo apt-get install cppcheck
+  ```
+  For more information about CppCheck, click <a href="https://cppcheck.sourceforge.io/">here</a>
     
 #### How to replicate RQ3
   Please first download the model "12heads_linevul_model.bin" through the following commands:
@@ -260,6 +266,12 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
   cd cppcheck
   python run.py
   ```
+  
+  Note. To install CppCheck, run the following command:
+  ```
+  sudo apt-get install cppcheck
+  ```
+  For more information about CppCheck, click <a href="https://cppcheck.sourceforge.io/">here</a>
 
 #### How to replicate the ablation study in the discussion section
   Please first download the model "12heads_linevul_model.bin" through the following commands:
