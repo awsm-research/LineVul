@@ -24,6 +24,9 @@
         </ul>
     </li>
     <li>
+      <a href="#appendix">Appendix</a>
+    </li>
+    <li>
       <a href="#acknowledgements">Acknowledgements</a>
     </li>
     <li>
@@ -349,7 +352,16 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     </b>
 </h3>
 
-    
+|      Model     |  F1  | Precision | Recall |
+|:--------------:|:----:|:---------:|:------:|
+|     LineVul    | 0.91 |    0.97   |  0.86  |
+|    IVDetect    | 0.35 |    0.23   |  0.72  |
+|     Reveal     |  0.3 |    0.19   |  0.74  |
+|     SySeVR     | 0.27 |    0.15   |  0.74  |
+|     Devign     | 0.26 |    0.18   |  0.52  |
+|     BoW+RF     | 0.25 |    0.48   |  0.17  |
+| Russell et al. | 0.24 |    0.16   |  0.48  |
+|  VulDeePecker  | 0.19 |    0.12   |  0.49  | 
 
 <h3>
     <b>
@@ -357,13 +369,32 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
     </b>
 </h3>
 
-
+|           Model           | Top-10(lines) Accuracy | Top-1 Accuracy | Top-3 Accuracy | Top-5 Accuracy | Initial False Alarm |
+|:-------------------------:|:----------------------:|:--------------:|:--------------:|:--------------:|:-------------------:|
+|       Self Attention      |          0.65          |       0.1      |      0.31      |      0.46      |         4.56        |
+| Layer Integrated Gradient |          0.53          |      0.09      |      0.22      |      0.36      |         8.31        |
+|          Saliency         |          0.58          |      0.06      |      0.21      |      0.36      |         6.93        |
+|          DeepLift         |          0.57          |      0.08      |      0.23      |      0.35      |         6.27        |
+|        DeepLiftShap       |          0.57          |      0.08      |      0.23      |      0.35      |         6.26        |
+|        GradientShap       |          0.52          |      0.08      |      0.24      |      0.34      |         7.82        |
+|          CppCheck         |           N/A          |      0.07      |       N/A      |       N/A      |         21.6        |
+    
 <h3>
     <b>
             Results of RQ3
     </b>
 </h3>
 
+|           Model           | Effort@20%Recall | Recall@1%loc |
+|:-------------------------:|:----------------:|:------------:|
+|       Self Attention      |      0.0075      |     0.24     |
+| Layer Integrated Gradient |      0.0106      |     0.19     |
+|          Saliency         |      0.0151      |     0.13     |
+|          DeepLift         |      0.0151      |     0.13     |
+|        DeepLiftShap       |      0.0151      |     0.13     |
+|        GradientShap       |       0.016      |     0.13     |
+|          CppCheck         |       0.13       |     0.04     |
+    
 <h3>
     <b>
             Ablation Study Results of LineVul
