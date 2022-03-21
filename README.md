@@ -64,10 +64,14 @@ All of the dataset has the same number of columns (i.e., 39 cols), we focus on t
 2. target (int): The function-level label that determines whether a function is vulnerable or not
 3. vul_func_with_fix (str): The fixed function with added in deleted lines labeled
 
+<div align="center">
+
 processed_func | target | vul_func_with_fix 
 | :---: | :---: | :---:
 ...  | ... | ... 
 
+</div>
+    
 For more information of our dataset, please refer to <a href="https://dl.acm.org/doi/10.1145/3379597.3387501">this paper</a> and <a href="https://github.com/ZeoVan/MSR_20_Code_vulnerability_CSV_Dataset">this repository</a>.
 
 ### About the Models
