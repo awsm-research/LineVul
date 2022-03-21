@@ -1,0 +1,3 @@
+Chapters::Display::~Display()
+{
+}
