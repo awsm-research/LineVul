@@ -377,7 +377,7 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/Wordlev
 |          DeepLift         |          0.57          |      0.08      |      0.23      |      0.35      |         6.27        |
 |        DeepLiftShap       |          0.57          |      0.08      |      0.23      |      0.35      |         6.26        |
 |        GradientShap       |          0.52          |      0.08      |      0.24      |      0.34      |         7.82        |
-|          CppCheck         |           N/A          |      0.07      |       N/A      |       N/A      |         21.6        |
+|          CppCheck         |          0.15          |      0.07      |      0.09      |      0.12      |         21.6        |
     
 <h3>
     <b>
