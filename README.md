@@ -10,6 +10,64 @@
   </p>
 </p>
 
+## Predict Real-World Software Vulnerabilities
+<div align="center">
+
+<h3>
+    <b>
+        LineVul Performance on <a href="https://cwe.mitre.org/top25/archive/2021/2021_cwe_top25.html">Top-25 Most Dangerous CWEs in 2021</a>
+    </b>
+</h3>
+
+| Rank | CWE Type | Accuracy |  Proportion |
+|:----:|:--------:|:--------:|:-----------:|
+|   1  |  CWE-787 |    98%   |  (294/300)  |
+|   2  |  CWE-79  |    98%   |  (102/104)  |
+|   3  |  CWE-125 |    99%   |  (771/774)  |
+|   4  |  CWE-20  |    99%   |  (802/811)  |
+|   5  |  CWE-78  |     -    |      -      |
+|   6  |  CWE-89  |     -    |      -      |
+|   7  |  CWE-416 |    99%   | (1051/1059) |
+|   8  |  CWE-22  |     -    |      -      |
+|   9  |  CWE-352 |   100%   |    (7/7)    |
+|  10  |  CWE-434 |     -    |      -      |
+|  11  |  CWE-306 |     -    |      -      |
+|  12  |  CWE-190 |    99%   |  (342/345)  |
+|  13  |  CWE-502 |     -    |      -      |
+|  14  |  CWE-287 |     -    |      -      |
+|  15  |  CWE-476 |    99%   |  (478/479)  |
+|  16  |  CWE-798 |     -    |      -      |
+|  17  |  CWE-119 |    99%   | (2544/2572) |
+|  18  |  CWE-862 |     -    |      -      |
+|  19  |  CWE-276 |     -    |      -      |
+|  20  |  CWE-200 |     -    |      -      |
+|  21  |  CWE-522 |     -    |      -      |
+|  22  |  CWE-732 |    99%   |  (146/147)  |
+|  23  |  CWE-611 |     -    |      -      |
+|  24  |  CWE-918 |     -    |      -      |
+|  25  |  CWE-77  |   100%   |   (28/28)   |
+    
+<h3>
+    <b>
+        Top-10 Most Accurately Predicted CWE Types of LineVul  
+    </b>
+</h3>
+
+| Rank | CWE Type | Accuracy | Proportion |
+|:----:|:--------:|:--------:|:----------:|
+|   1  |  CWE-254 |   100%   |  (320/320) |
+|   2  |  CWE-284 |   100%   |  (224/224) |
+|   3  |  CWE-704 |   100%   |  (116/116) |
+|   4  |  CWE-617 |   100%   |  (103/103) |
+|   5  |  CWE-269 |   100%   |   (98/98)  |
+|   6  |  CWE-415 |   100%   |   (97/97)  |
+|   7  |  CWE-22  |   100%   |   (69/69)  |
+|   8  |  CWE-134 |   100%   |   (64/64)  |
+|   9  |  CWE-611 |   100%   |   (51/51)  |
+|  10  |  CWE-754 |   100%   |   (44/44)  |
+
+</div>
+
 <!-- Table of contents -->
 <details open="open">
   <summary>Table of Contents</summary>
