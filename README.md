@@ -135,14 +135,14 @@ For more information of our dataset, please refer to <a href="https://dl.acm.org
 ### About the Models
 
 #### Model Naming Convention
-All of the models on HuggingFace Model Hub and Google Drive has the same naming convention as described in the following table:
+All of the models in the Google Drive are named based on the convention described in the following table:
 
-Model Name | Model Specification | HuggingFace Model ID
-| :---: | :---: | :---: 
-LineVul  | BPE Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/LineVul
-BPEBERT  | BPE Tokenizer + No Pre-training + BERT | MickyMike/BPEBERT
-WordlevelPretrainedBERT  | Wordlevel Tokenizer + Pre-training (Codesearchnet) + BERT | MickyMike/WordlevelPretrainedBERT
-WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT | MickyMike/WordlevelBERT
+Model Name | Model Specification 
+| :---: | :---: 
+LineVul  | BPE Tokenizer + Pre-training (Codesearchnet) + BERT 
+BPEBERT  | BPE Tokenizer + No Pre-training + BERT 
+WordlevelPretrainedBERT  | Wordlevel Tokenizer + Pre-training (Codesearchnet) + BERT 
+WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT 
 
 #### How to access the models
 * All of the models included in our experiments can be downloaded from public Google Drive.
