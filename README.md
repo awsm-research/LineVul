@@ -68,6 +68,15 @@
 
 </div>
 
+<div align="center">
+    <h3>
+    <b>
+        [MSR 2022 Technical track] [Paper #166] [7 mins talk] LineVul: Line-Level Vulnerability Prediction 
+    </b>
+</h3>
+    <a href="https://www.youtube.com/watch?v=m9bWIiDe-fU"><img src="./logo/msr_cover.png" alt="" style="width:480px;height:270px;"></a>
+</div>
+    
 <!-- Table of contents -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -89,6 +98,9 @@
     </li>
     <li>
       <a href="#license">License</a>
+    </li>
+    <li>
+      <a href="#citation">Citation</a>
     </li>
   </ol>
 </details>
@@ -513,3 +525,14 @@ WordlevelBERT | Wordlevel Tokenizer + No Pre-training + BERT
   
 ## License 
 <a href="https://github.com/awsm-research/LineVul/blob/main/LICENSE">MIT License</a>
+
+## Citation
+```bash
+@inproceedings{fu2022linevul,
+  title={LineVul: A Transformer-based Line-Level Vulnerability Prediction},
+  author={Fu, Michael and Tantithamthavorn, Chakkrit},
+  booktitle={2022 IEEE/ACM 19th International Conference on Mining Software Repositories (MSR)},
+  year={2022},
+  organization={IEEE}
+}
+```
