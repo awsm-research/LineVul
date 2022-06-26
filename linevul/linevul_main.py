@@ -13,11 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""
-Fine-tuning the library models for language modeling on a text file (GPT, GPT-2, BERT, RoBERTa).
-GPT and GPT-2 are fine-tuned using a causal language modeling (CLM) loss while BERT and RoBERTa are fine-tuned
-using a masked language modeling (MLM) loss.
-"""
 
 from __future__ import absolute_import, division, print_function
 import argparse
@@ -45,7 +40,6 @@ from captum.attr import LayerIntegratedGradients, DeepLift, DeepLiftShap, Gradie
 # word-level tokenizer
 from tokenizers import Tokenizer
 
-cpu_cont = 16
 logger = logging.getLogger(__name__)
 
 class InputFeatures(object):
@@ -102,7 +96,7 @@ def convert_examples_to_features(func, label, tokenizer, args):
         source_ids = encoded
         source_tokens = []
         return InputFeatures(source_tokens, source_ids, label)
-    #source
+    # source
     code_tokens = tokenizer.tokenize(str(func))[:args.block_size-2]
     source_tokens = [tokenizer.cls_token] + code_tokens + [tokenizer.sep_token]
     source_ids = tokenizer.convert_tokens_to_ids(source_tokens)
@@ -706,41 +700,26 @@ def line_level_localization_tp(flaw_lines: str, tokenizer, model, mini_batch, or
             # attentions: a tuple with of one Tensor with 4D shape (batch_size, num_heads, sequence_length, sequence_length)
             input_ids = input_ids.to(args.device)
             prob, attentions = model(input_ids=input_ids, output_attentions=True)
-            att_weight_sum = None
-            ###all_att_weight_sum = []
+            # take from tuple then take out mini-batch attention values
+            attentions = attentions[0][0]
+            attention = None
             # go into the layer
             for i in range(len(attentions)):
                 layer_attention = attentions[i]
-                # go into mini-batch
-                layer_attention = layer_attention[0]
-                # summerize each attention head
-                layer_attention = sum(layer_attention)
                 # summerize the values of each token dot other tokens
                 layer_attention = sum(layer_attention)
-                ###all_att_weight_sum.append(layer_attention)
-                if att_weight_sum is None:
-                    att_weight_sum = layer_attention
+                if attention is None:
+                    attention = layer_attention
                 else:
-                    att_weight_sum += layer_attention
-            # the first 12 elements indicate the attention weight some for specific single layer
-            ###all_att_weight_sum.append(att_weight_sum)
-            # the 13th elements is the sum of all attention weights from all layers
-            ###attention = all_att_weight_sum[12]
-            attention = att_weight_sum
+                    attention += layer_attention
             # clean att score for <s> and </s>
             attention = clean_special_token_values(attention, padding=True)
             # attention should be 1D tensor with seq length representing each token's attention value
             word_att_scores = get_word_att_scores(all_tokens=all_tokens, att_scores=attention)
-            """ used for paper fig
-            if index == 2797:
-                print("word_att_scores: ", word_att_scores)
-                exit()
-            """
             all_lines_score, flaw_line_indices = get_all_lines_score(word_att_scores, verified_flaw_lines)
             # return if no flaw lines exist
             if len(flaw_line_indices) == 0:
                 return "NA"
-
             total_lines, num_of_flaw_lines, all_correctly_predicted_flaw_lines, min_clean_lines_inspected, max_clean_lines_inspected, all_correctly_localized_func, top_10_correct_idx, top_10_not_correct_idx \
             = \
             line_level_evaluation(all_lines_score=all_lines_score, flaw_line_indices=flaw_line_indices, top_k_loc=top_k_loc, top_k_constant=top_k_constant, true_positive_only=True, index=index)
@@ -751,9 +730,7 @@ def line_level_localization_tp(flaw_lines: str, tokenizer, model, mini_batch, or
             input_ids = input_ids.to(args.device)
             labels = labels.to(args.device)
             ref_input_ids = ref_input_ids.to(args.device)
-
             lig = LayerIntegratedGradients(lig_forward, model.encoder.roberta.embeddings)
-
             attributions, delta = lig.attribute(inputs=input_ids,
                                                 baselines=ref_input_ids,
                                                 internal_batch_size=32,
@@ -882,30 +859,21 @@ def line_level_localization(flaw_lines: str, tokenizer, model, mini_batch, origi
         # attentions: a tuple with of one Tensor with 4D shape (batch_size, num_heads, sequence_length, sequence_length)
         input_ids = input_ids.to(args.device)
         model.eval()
-        model.cuda()
+        model.to(args.device)
         with torch.no_grad():
             prob, attentions = model(input_ids=input_ids, output_attentions=True)
-        att_weight_sum = None
-        ###all_att_weight_sum = []
+        # take from tuple then take out mini-batch attention values
+        attentions = attentions[0][0]
+        attention = None
         # go into the layer
         for i in range(len(attentions)):
             layer_attention = attentions[i]
-            # go into mini-batch
-            layer_attention = layer_attention[0]
-            # summerize each attention head
-            layer_attention = sum(layer_attention)
             # summerize the values of each token dot other tokens
             layer_attention = sum(layer_attention)
-            ###all_att_weight_sum.append(layer_attention)
-            if att_weight_sum is None:
-                att_weight_sum = layer_attention
+            if attention is None:
+                attention = layer_attention
             else:
-                att_weight_sum += layer_attention
-        # the first 12 elements indicate the attention weight some for specific single layer
-        ###all_att_weight_sum.append(att_weight_sum)
-        # the 13th elements is the sum of all attention weights from all layers
-        ###attention = all_att_weight_sum[12]
-        attention = att_weight_sum
+                attention += layer_attention
         # clean att score for <s> and </s>
         attention = clean_special_token_values(attention, padding=True)
         # attention should be 1D tensor with seq length representing each token's attention value
@@ -1146,7 +1114,6 @@ def main():
                         help="The input training data file (a csv file).")
     parser.add_argument("--output_dir", default=None, type=str, required=False,
                         help="The output directory where the model predictions and checkpoints will be written.")
-    ## Other parameters
     parser.add_argument("--model_type", default="bert", type=str,
                         help="The model architecture to be fine-tuned.")
     parser.add_argument("--block_size", default=-1, type=int,
