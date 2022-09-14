@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/449643469.svg)](https://zenodo.org/badge/latestdoi/449643469)
+
 # LineVul Replication Package
 <!-- PROJECT LOGO -->
 <br />
