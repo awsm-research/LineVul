@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/449643469.svg)](https://zenodo.org/badge/latestdoi/449643469)
 
-# LineVul Replication Package
+# <a href="https://www.researchgate.net/publication/359402890_LineVul_A_Transformer-based_Line-Level_Vulnerability_Prediction">LineVul</a> Replication Package
 <!-- LOGO -->
 <br />
 <p align="center">
