@@ -1234,12 +1234,6 @@ def main():
         train(args, train_dataset, model, tokenizer, eval_dataset)
     # Evaluation
     results = {}
-    if args.do_eval:
-        checkpoint_prefix = f'checkpoint-best-f1/{args.model_name}'
-        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))  
-        model.load_state_dict(torch.load(output_dir))
-        model.to(args.device)
-        result=evaluate(args, model, tokenizer)   
     if args.do_test:
         checkpoint_prefix = f'checkpoint-best-f1/{args.model_name}'
         output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))  
