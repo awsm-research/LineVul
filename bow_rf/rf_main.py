@@ -22,8 +22,8 @@ y_test = test_data["target"]
 # apply BoW feature extraction
 vectorizer = TfidfVectorizer(norm='l2', max_features=1000)
 vectorizer = vectorizer.fit(X_train)
-X_train = vectorizer.transform(X_train).todense()
-X_test = vectorizer.transform(X_test).todense()
+X_train = np.asarray(vectorizer.transform(X_train).todense())
+X_test = np.asarray(vectorizer.transform(X_test).todense())
 # train the model
 rf = RandomForestClassifier(n_estimators=1000,
                             n_jobs=-1,
