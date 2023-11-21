@@ -118,16 +118,7 @@ cd LineVul
 
 Then, install the python dependencies via the following command:
 ```
-pip install gdown
-pip install transformers
-pip install captum
-pip install torch
-pip install numpy
-pip install tqdm
-pip install pickle
-pip install sklearn
-pip install pandas
-pip install tokenizers
+pip install -r requirements.txt
 ```
 
 ### About the Datasets
