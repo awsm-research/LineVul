@@ -33,8 +33,9 @@ import multiprocessing
 from linevul_model import Model
 import pandas as pd
 # metrics
-from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, PrecisionRecallDisplay
 from sklearn.metrics import auc
+import matplotlib.pyplot as plt
 # model reasoning
 from captum.attr import LayerIntegratedGradients, DeepLift, DeepLiftShap, GradientShap, Saliency
 # word-level tokenizer
@@ -249,6 +250,9 @@ def evaluate(args, model, tokenizer, eval_dataset, eval_when_training=False):
         "eval_threshold":best_threshold,
     }
 
+    PrecisionRecallDisplay.from_predictions(y_trues, logits[:, 1], name='LineVul')
+    plt.savefig(f'eval_precision_recall_{args.model_name}.pdf')
+
     logger.info("***** Eval results *****")
     for key in sorted(result.keys()):
         logger.info("  %s = %s", key, str(round(result[key],4)))
@@ -296,6 +300,8 @@ def test(args, model, tokenizer, test_dataset, best_threshold=0.5):
         "test_f1": float(f1),
         "test_threshold":best_threshold,
     }
+    PrecisionRecallDisplay.from_predictions(y_trues, logits[:, 1], name="LineVul")
+    plt.savefig(f'test_precision_recall_{args.model_name}.pdf')
 
     logger.info("***** Test results *****")
     for key in sorted(result.keys()):
