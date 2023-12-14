@@ -1,5 +1,6 @@
 captum
 gdown
+matplotlib
 numpy
 pandas
 scikit-learn
